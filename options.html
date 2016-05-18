@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head><title>Yammer Block Settings</title></head>
+<style>
+    .error
+    {
+        margin: 2px 0px 2px 0px;
+        padding: 2px;
+        border: 1px solid #ff0000;
+        background-color: #fff0f0;
+    }
+</style>
+<body>
+    <div>
+        <div>Blocked Users (comma separated):</div>
+        <textarea id="optionBlockedUsers" rows="3" cols="44"></textarea>
+        <div class="error" style="display:none">Each item must be a numeric value and separated by a comma.</div>
+    </div>
+    <button id="saveOptions">Save</button>
+</body>
+
+<script src="scripts/jquery-2.2.3.min.js"></script>
+<script src="scripts/options.js"></script>
+
+</html>

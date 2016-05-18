@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+
+    "name": "Yammer Block",
+    "description": "Blocks crappy yammer junk",
+    "version": "1.0",
+
+    "icons": {
+        "48": "content/images/icon-48.png",
+        "128": "content/images/icon-128.png"
+    },
+
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+
+    "browser_action": {
+        "default_icon": "content/images/icon-19.png",
+        "default_title": "Yammer Block"
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["https://www.yammer.com/microsoft.com/*"],
+            "run_at": "document_end",
+            "js": ["scripts/jquery-2.2.3.min.js", "scripts/yamblock.js"]
+        }
+    ],
+
+    "permissions": [
+        "activeTab",
+        "storage",
+        "https://ajax.googleapis.com/"
+    ]
+}
