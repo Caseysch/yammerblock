@@ -3,8 +3,33 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{A9976985-C892-4C99-93F7-AF1A9DFBC0DE}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\jquery-2.2.3.min.js = scripts\jquery-2.2.3.min.js
+		scripts\options.js = scripts\options.js
+		scripts\yamblock.js = scripts\yamblock.js
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D2235B7A-5A48-4795-9AEE-18AF0F4AE9F4}"
+	ProjectSection(SolutionItems) = preProject
+		manifest.json = manifest.json
+		options.html = options.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "content", "content", "{2BEA3C3E-7813-462A-A497-801896F156E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{0B055FE5-20EF-44BF-97D1-6D984B322D0B}"
+	ProjectSection(SolutionItems) = preProject
+		content\images\icon-128.png = content\images\icon-128.png
+		content\images\icon-19.png = content\images\icon-19.png
+		content\images\icon-48.png = content\images\icon-48.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B055FE5-20EF-44BF-97D1-6D984B322D0B} = {2BEA3C3E-7813-462A-A497-801896F156E7}
 	EndGlobalSection
 EndGlobal
