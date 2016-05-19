@@ -2,16 +2,18 @@ function traceActivity(message) {
     console.log("YAMBLOCK: " + message);
 }
 
-function removeBlockedUsers(blockedUsers) {
-    blockedUsers.forEach(function(userId) {
+function removeBlockedUsers(userData) {
+    userData.blocked.forEach(function(userId) {
         userId = userId.trim();
         $(".yj-message-list-item--avatar[data-userid=" + userId + "]").not("[style='display: none;']").each(function() {
             traceActivity("Removing post from user:" + userId);
 
-            if ($(this).parents().eq(2).hasClass("yj-thread-reply-list-item")) {
-                $(this).parents().eq(2).hide();
-            } else {
-                $(this).parents().eq(3).hide();
+            var index = $(this).parents().eq(2).hasClass("yj-thread-reply-list-item") ? 2 : 3;
+            if (userData.blockedMethod === 0) {
+                $(this).parents().eq(index).hide();
+            }
+            else {
+                $(this).parents().eq(index).find(".yj-message-list-item--body-message").eq(0).text("[hidden]");
             }
 
             $(this).hide();
@@ -19,10 +21,10 @@ function removeBlockedUsers(blockedUsers) {
     });
 }
 
-function removeWorthlessPosts() {
-    var groups = $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']"),
-        joins = $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']"),
-        praises = $(".yj-praise-view--title").not("[style='display: none;']");
+function removeWorthlessPosts(postData) {
+    var groups = postData.hideGroups ? $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']") : $(""),
+        joins = postData.hideJoines ? $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']") : $(""),
+        praises = postData.hidePraises ? $(".yj-praise-view--title").not("[style='display: none;']") : $("");
 
     groups.each(function() {
         $(this).parents().eq(4).hide();
@@ -41,14 +43,21 @@ function removeWorthlessPosts() {
 
 function processDOMChanged() {
     chrome.storage.sync.get({
-            "blockedUsers": []
+            users: {
+                blocked: [],
+                blockedMethod: 0
+            },
+            posts: {
+                hideGroups: true,
+                hideJoins: true,
+                hidePraises: true
+            }
         },
-        function(items) {
-            removeBlockedUsers(items.blockedUsers);
+        function (data) {
+            removeBlockedUsers(data.users);
+            removeWorthlessPosts(data.posts);
         }
     );
-
-    removeWorthlessPosts();
 }
 
 MutationObserver = window.MutationObserver;

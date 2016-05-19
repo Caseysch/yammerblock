@@ -1,44 +1,66 @@
 $(document).ready(setup);
 
-function processSettings(incomingSettings) {
-    var outgoing = [],
-        isSafe = true,
+function processUsers(incomingUsers) {
+    var users = [],
+        error = false,
         numbers = /^\d+$/;
-    for(var i=0;i<incomingSettings.length;i++) {
-        var setting = incomingSettings[i].trim();
+    for (var i = 0; i < incomingUsers.length; i++) {
+        var setting = incomingUsers[i].trim();
         if (setting.length === 0) continue;
 
         if (numbers.test(setting)) {
-            outgoing.push(setting);
+            users.push(setting);
         }
         else {
-            isSafe = false;
+            error = true;
             break;
         }
     }
 
-    return { "isSafe":isSafe, "settings":outgoing };
+    return { "error": error, "users": users };
 }
 
 function setup() {
+    var currentVersion = 1;
+
     chrome.storage.sync.get({
-            "blockedUsers": []
+            users: {
+                blocked: [],
+                blockedMethod: 0
+            },
+            posts: {
+                hideGroups: true,
+                hideJoins: true,
+                hidePraises: true
+            }
         },
-        function(items) {
-            $("#optionBlockedUsers").val(items.blockedUsers.join(','));
+        function(data) {
+            $("#optionBlockedUsers").val(data.users.blocked.join(','));
+            $("#optionBlockedUsersMethod").val(data.users.blockedMethod);
+            $("#optionGroups").prop("checked", data.posts.hideGroups);
+            $("#optionJoins").prop("checked", data.posts.hideJoins);
+            $("#optionPraises").prop("checked", data.posts.hidePraises);
         }
     );
 
     $("#saveOptions").click(function() {
-        var blockedUsers = $("#optionBlockedUsers").val();
-
-        var result = processSettings(blockedUsers.split(','));
-        if (result.isSafe) {
+        var result = processUsers($("#optionBlockedUsers").val().split(','));
+        if (!result.error) {
             $(".error").hide();
-            chrome.storage.sync.set({
-                    "blockedUsers": result.settings
+            var data = {
+                version: currentVersion,
+                users: {
+                    blocked: result.users,
+                    blockedMethod: $("#optionBlockedUsersMethod").val()
+                },
+                posts: {
+                    hideGroups: $("#optionGroups").prop("checked"),
+                    hideJoins: $("#optionJoins").prop("checked"),
+                    hidePraises: $("#optionPraises").prop("checked")
                 }
-            );
+            };
+
+            chrome.storage.sync.set(data);
         }
         else {
             $(".error").show();
