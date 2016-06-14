@@ -24,7 +24,7 @@
         {
             "matches": ["https://www.yammer.com/microsoft.com/*"],
             "run_at": "document_end",
-            "js": ["scripts/jquery-2.2.3.min.js", "scripts/yamblock.js"]
+            "js": ["scripts/jquery-3.0.0.min.js", "scripts/yamblock.js"]
         }
     ],
 

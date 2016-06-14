@@ -9,7 +9,7 @@ function removeBlockedUsers(userData) {
             traceActivity("Removing post from user:" + userId);
 
             var index = $(this).parents().eq(2).hasClass("yj-thread-reply-list-item") ? 2 : 3;
-            if (userData.blockedMethod === 0) {
+            if (userData.blockedMethod === "0") {
                 $(this).parents().eq(index).hide();
             }
             else {
@@ -37,7 +37,7 @@ function removeWorthlessPosts(postData) {
     });
 
     if (joins.length + groups.length + praises.length > 0) {
-        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, and " + praises.length + " praised posts. " + $("li.yj-thread-list-item:visible").length + " actual posts");
+        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, and " + praises.length + " praised posts.");
     }
 }
 
