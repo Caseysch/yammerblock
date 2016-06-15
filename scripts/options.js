@@ -31,7 +31,8 @@ function setup() {
             posts: {
                 hideGroups: true,
                 hideJoins: true,
-                hidePraises: true
+                hidePraises: true,
+                hideRead: false
             }
         },
         function(data) {
@@ -40,6 +41,7 @@ function setup() {
             $("#optionGroups").prop("checked", data.posts.hideGroups);
             $("#optionJoins").prop("checked", data.posts.hideJoins);
             $("#optionPraises").prop("checked", data.posts.hidePraises);
+            $("#optionRead").prop("checked", data.posts.hideRead);
         }
     );
 
@@ -56,7 +58,8 @@ function setup() {
                 posts: {
                     hideGroups: $("#optionGroups").prop("checked"),
                     hideJoins: $("#optionJoins").prop("checked"),
-                    hidePraises: $("#optionPraises").prop("checked")
+                    hidePraises: $("#optionPraises").prop("checked"),
+                    hideRead: $("#optionRead").prop("checked")
                 }
             };
 
