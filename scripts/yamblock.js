@@ -24,7 +24,8 @@ function removeBlockedUsers(userData) {
 function removeWorthlessPosts(postData) {
     var groups = postData.hideGroups ? $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']") : $(""),
         joins = postData.hideJoines ? $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']") : $(""),
-        praises = postData.hidePraises ? $(".yj-message-list-item--praise-content:visible").not("[style='display: none;']") : $("");
+        praises = postData.hidePraises ? $(".yj-message-list-item--praise-content:visible").not("[style='display: none;']") : $(""),
+        read = postData.hideRead && !window.location.href.endsWith("&view=all") ? $(".yj-thread-starter .yj-message-list-item--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
 
     groups.each(function() {
         $(this).parents().eq(4).hide();
@@ -35,9 +36,12 @@ function removeWorthlessPosts(postData) {
     praises.each(function() {
         $(this).parents().eq(4).hide();
     });
+    read.each(function () {
+        $(this).parents().eq(7).hide();
+    });
 
-    if (joins.length + groups.length + praises.length > 0) {
-        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, and " + praises.length + " praised posts.");
+    if (joins.length + groups.length + praises.length + read.length > 0) {
+        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, " + praises.length + " praised posts, and " + read.length + " previously read topics.");
     }
 }
 
@@ -50,7 +54,8 @@ function processDOMChanged() {
             posts: {
                 hideGroups: true,
                 hideJoins: true,
-                hidePraises: true
+                hidePraises: true,
+                hideRead: false
             }
         },
         function (data) {
