@@ -30,13 +30,11 @@ function removeWorthlessPosts(postData) {
         praises = postData.hidePraises ? $(".yj-praise-attachment:visible").not("[style='display: none;']") : $(""),
         read = shouldHideRead ? $(".yj-thread-starter .yj-message-attributes--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
 
-    var filteredPostCount = 0;
     postData.phrases.forEach(function (phrase) {
         var posts = $("span.yj-message-list-item--body-message:visible:contains('" + phrase + "')").not("[style='display: none;']");
         if (posts.length > 0) {
             traceActivity("Removing " + posts.length + " posts containing phrase \"" + phrase + "\"");
             posts.each(function () {
-                filteredPostCount++;
                 $(this).parents().eq(4).hide();
             });
         }
