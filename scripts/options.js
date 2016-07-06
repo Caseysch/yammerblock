@@ -57,7 +57,7 @@ function setup() {
             $("#optionAllCo").prop("checked", data.options.hideAllCo);
             $("#optionGroups").prop("checked", data.posts.hideGroups);
             $("#optionJoins").prop("checked", data.posts.hideJoins);
-            $("#optionBlockedPhrases").prop("checked", data.posts.hidePraises);
+            $("#optionPraises").prop("checked", data.posts.hidePraises);
             $("#optionRead").prop("checked", data.posts.hideRead);
         }
     );
