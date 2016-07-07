@@ -20,6 +20,17 @@ function processUsers(incomingUsers) {
     return { "error": error, "users": users };
 }
 
+function processPhrases(incomingPhrases) {
+    var phrases = [];
+    for (var i = 0; i < incomingPhrases.length; i++) {
+        var setting = incomingPhrases[i].trim();
+        if (setting.length === 0) continue;
+        phrases.push(setting);
+    }
+
+    return phrases;
+}
+
 function setup() {
     var currentVersion = 1;
 
@@ -32,12 +43,22 @@ function setup() {
                 hideGroups: true,
                 hideJoins: true,
                 hidePraises: true,
+<<<<<<< HEAD
+                hideRead: false,
+                phrases: []
+            },
+            options: {
+                hideAllCo: false
+=======
                 hideRead: false
+>>>>>>> Caseysch-master
             }
         },
         function(data) {
             $("#optionBlockedUsers").val(data.users.blocked.join(','));
             $("#optionBlockedUsersMethod").val(data.users.blockedMethod);
+            $("#optionBlockedPhrases").val(data.posts.phrases.join(','));
+            $("#optionAllCo").prop("checked", data.options.hideAllCo);
             $("#optionGroups").prop("checked", data.posts.hideGroups);
             $("#optionJoins").prop("checked", data.posts.hideJoins);
             $("#optionPraises").prop("checked", data.posts.hidePraises);
@@ -59,7 +80,15 @@ function setup() {
                     hideGroups: $("#optionGroups").prop("checked"),
                     hideJoins: $("#optionJoins").prop("checked"),
                     hidePraises: $("#optionPraises").prop("checked"),
+<<<<<<< HEAD
+                    hideRead: $("#optionRead").prop("checked"),
+                    phrases: processPhrases($("#optionBlockedPhrases").val().split(','))
+                },
+                options: {
+                    hideAllCo: $("#optionAllCo").prop("checked")
+=======
                     hideRead: $("#optionRead").prop("checked")
+>>>>>>> Caseysch-master
                 }
             };
 
