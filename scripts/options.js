@@ -43,15 +43,11 @@ function setup() {
                 hideGroups: true,
                 hideJoins: true,
                 hidePraises: true,
-<<<<<<< HEAD
                 hideRead: false,
                 phrases: []
             },
             options: {
                 hideAllCo: false
-=======
-                hideRead: false
->>>>>>> Caseysch-master
             }
         },
         function(data) {
@@ -80,15 +76,11 @@ function setup() {
                     hideGroups: $("#optionGroups").prop("checked"),
                     hideJoins: $("#optionJoins").prop("checked"),
                     hidePraises: $("#optionPraises").prop("checked"),
-<<<<<<< HEAD
                     hideRead: $("#optionRead").prop("checked"),
                     phrases: processPhrases($("#optionBlockedPhrases").val().split(','))
                 },
                 options: {
                     hideAllCo: $("#optionAllCo").prop("checked")
-=======
-                    hideRead: $("#optionRead").prop("checked")
->>>>>>> Caseysch-master
                 }
             };
 

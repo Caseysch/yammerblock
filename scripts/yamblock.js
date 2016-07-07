@@ -27,7 +27,6 @@ function removeWorthlessPosts(postData) {
 
     var groups = postData.hideGroups ? $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']") : $(""),
         joins = postData.hideJoines ? $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']") : $(""),
-<<<<<<< HEAD
         praises = postData.hidePraises ? $(".yj-praise-attachment:visible").not("[style='display: none;']") : $(""),
         read = shouldHideRead ? $(".yj-thread-starter .yj-message-attributes--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
 
@@ -40,10 +39,6 @@ function removeWorthlessPosts(postData) {
             });
         }
     });
-=======
-        praises = postData.hidePraises ? $(".yj-message-list-item--praise-content:visible").not("[style='display: none;']") : $(""),
-        read = postData.hideRead && !window.location.href.endsWith("&view=all") ? $(".yj-thread-starter .yj-message-list-item--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
->>>>>>> Caseysch-master
 
     groups.each(function() {
         $(this).parents().eq(4).hide();
@@ -57,7 +52,6 @@ function removeWorthlessPosts(postData) {
     read.each(function () {
         $(this).parents().eq(7).hide();
     });
-<<<<<<< HEAD
     
     if (joins.length + groups.length + praises.length + read.length > 0) {
         traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, " + praises.length + " praised posts, and " + read.length + " previously read topics.");
@@ -67,14 +61,6 @@ function removeWorthlessPosts(postData) {
 function processOptions(options) {
     if (options.hideAllCo) {
         $(".all-company-list-item").hide();
-=======
-    read.each(function () {
-        $(this).parents().eq(7).hide();
-    });
-
-    if (joins.length + groups.length + praises.length + read.length > 0) {
-        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, " + praises.length + " praised posts, and " + read.length + " previously read topics.");
->>>>>>> Caseysch-master
     }
 }
 
@@ -88,15 +74,11 @@ function processDOMChanged() {
                 hideGroups: true,
                 hideJoins: true,
                 hidePraises: true,
-<<<<<<< HEAD
                 hideRead: false,
                 phrases: []
             },
             options: {
                 hideAllCo: false
-=======
-                hideRead: false
->>>>>>> Caseysch-master
             }
         },
         function (data) {
