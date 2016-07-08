@@ -6,14 +6,14 @@ function removeBlockedUsers(userData) {
     userData.blocked.forEach(function(userId) {
         userId = userId.trim();
         $(".yj-message-list-item--avatar[data-userid=" + userId + "]").not("[style='display: none;']").each(function() {
-            traceActivity("Removing post from user:" + userId);
+            traceActivity("Removing post from user: " + userId);
 
             var index = $(this).parents().eq(2).hasClass("yj-thread-reply-list-item") ? 2 : 3;
             if (userData.blockedMethod === "0") {
                 $(this).parents().eq(index).hide();
             }
             else {
-                $(this).parents().eq(index).find(".yj-message-list-item--body-message").eq(0).text("[hidden]");
+                $(this).parents().eq(index).text("[hidden]");
             }
 
             $(this).hide();
