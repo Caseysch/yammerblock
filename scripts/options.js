@@ -53,12 +53,14 @@ function setup() {
         function(data) {
             $("#optionBlockedUsers").val(data.users.blocked.join(','));
             $("#optionBlockedUsersMethod").val(data.users.blockedMethod);
+
             $("#optionBlockedPhrases").val(data.posts.phrases.join(','));
-            $("#optionAllCo").prop("checked", data.options.hideAllCo);
             $("#optionGroups").prop("checked", data.posts.hideGroups);
             $("#optionJoins").prop("checked", data.posts.hideJoins);
             $("#optionPraises").prop("checked", data.posts.hidePraises);
             $("#optionRead").prop("checked", data.posts.hideRead);
+
+            $("#optionAllCo").prop("checked", data.options.hideAllCo);
         }
     );
 

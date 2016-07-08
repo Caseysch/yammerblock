@@ -25,36 +25,36 @@ function removeWorthlessPosts(postData) {
     // Only remove read posts if the setting is on, it's on unread topics, and it's a group that has been joined
     var shouldHideRead = postData.hideRead && !window.location.href.endsWith("&view=all") && $(".yj-follow-button").filter(function () { return this.textContent.includes("Join Group"); }).length == 0;
 
-    var groups = postData.hideGroups ? $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']") : $(""),
-        joins = postData.hideJoines ? $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']") : $(""),
-        praises = postData.hidePraises ? $(".yj-praise-attachment:visible").not("[style='display: none;']") : $(""),
-        read = shouldHideRead ? $(".yj-thread-starter .yj-message-attributes--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
+    var $groups = postData.hideGroups ? $("span.yj-message-list-item--body-message:visible:contains('has created the ')").not("[style='display: none;']") : $(""),
+        $joins = postData.hideJoines ? $("a.yammer-object:visible:contains('#joined')").not("[style='display: none;']") : $(""),
+        $praises = postData.hidePraises ? $(".yj-praise-attachment:visible").not("[style='display: none;']") : $(""),
+        $read = shouldHideRead ? $(".yj-thread-starter .yj-message-attributes--unviewed-indicator").filter(function () { return $(this).css("opacity") == 0 }) : $("");
 
     postData.phrases.forEach(function (phrase) {
-        var posts = $("span.yj-message-list-item--body-message:visible:contains('" + phrase + "')").not("[style='display: none;']");
-        if (posts.length > 0) {
-            traceActivity("Removing " + posts.length + " posts containing phrase \"" + phrase + "\"");
-            posts.each(function () {
+        var $posts = $("span.yj-message-list-item--body-message:visible:contains('" + phrase + "')").not("[style='display: none;']");
+        if ($posts.length > 0) {
+            traceActivity("Removing " + $posts.length + " posts containing phrase \"" + phrase + "\"");
+            $posts.each(function () {
                 $(this).parents().eq(4).hide();
             });
         }
     });
 
-    groups.each(function() {
+    $groups.each(function() {
         $(this).parents().eq(4).hide();
     });
-    joins.each(function() {
+    $joins.each(function() {
         $(this).parents().eq(5).hide();
     });
-    praises.each(function() {
+    $praises.each(function() {
         $(this).parents().eq(5).hide();
     });
-    read.each(function () {
+    $read.each(function () {
         $(this).parents().eq(7).hide();
     });
     
-    if (joins.length + groups.length + praises.length + read.length > 0) {
-        traceActivity("Removed " + joins.length + " joined posts, " + groups.length + " group created posts, " + praises.length + " praised posts, and " + read.length + " previously read topics.");
+    if ($joins.length + $groups.length + $praises.length + $read.length > 0) {
+        traceActivity("Removed " + $joins.length + " joined posts, " + $groups.length + " group created posts, " + $praises.length + " praised posts, and " + $read.length + " previously read topics.");
     }
 }
 
