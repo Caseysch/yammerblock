@@ -1,36 +1,41 @@
 {
-    "manifest_version": 2,
+  "manifest_version": 2,
 
-    "name": "Yammer Block",
-    "description": "Blocks crappy yammer junk",
-    "version": "1.0",
+  "name": "Yammer Block",
+  "author": "A. Curmudgeon",
+  "description": "Blocks crappy yammer junk",
+  "version": "1.0",
 
-    "icons": {
-        "48": "content/images/icon-48.png",
-        "128": "content/images/icon-128.png"
+  "icons": {
+    "48": "content/images/icon-48.png",
+    "128": "content/images/icon-128.png"
+  },
+
+  "options_ui": {
+      "page": "options.html",
+      "chrome_style": true
+  },
+
+  "browser_action": {
+    "default_icon": {
+      "19": "content/images/icon-19.png",
+      "20": "content/images/icon-19.png",
+      "40": "content/images/icon-48.png"
     },
+    "default_title": "Yammer Block"
+  },
 
-    "options_ui": {
-        "page": "options.html",
-        "chrome_style": true
-    },
+  "content_scripts": [
+    {
+      "matches": ["https://www.yammer.com/microsoft.com/*"],
+      "run_at": "document_end",
+      "js": ["scripts/jquery-3.1.0.min.js", "scripts/yamblock.js"]
+    }
+  ],
 
-    "browser_action": {
-        "default_icon": "content/images/icon-19.png",
-        "default_title": "Yammer Block"
-    },
-
-    "content_scripts": [
-        {
-            "matches": ["https://www.yammer.com/microsoft.com/*"],
-            "run_at": "document_end",
-            "js": ["scripts/jquery-3.1.0.min.js", "scripts/yamblock.js"]
-        }
-    ],
-
-    "permissions": [
-        "activeTab",
-        "storage",
-        "https://ajax.googleapis.com/"
-    ]
+  "permissions": [
+    "activeTab",
+    "storage",
+    "https://ajax.googleapis.com/"
+  ]
 }
