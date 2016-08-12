@@ -35,7 +35,7 @@ function removeWorthlessPosts(postData) {
         if ($posts.length > 0) {
             traceActivity("Removing " + $posts.length + " posts containing phrase \"" + phrase + "\"");
             $posts.each(function () {
-                $(this).parents().eq(4).hide();
+                $(this).parents().eq(3).hide();
             });
         }
     });
