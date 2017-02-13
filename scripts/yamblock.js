@@ -63,6 +63,9 @@ function processOptions(options) {
     if (options.hideAllCo) {
         $(".all-company-list-item").hide();
     }
+    if (options.hidePrivateMessages) {
+        $(".yj-nav-menu--private-messages-group-list").hide();
+    }
 }
 
 function processDOMChanged() {
@@ -79,7 +82,8 @@ function processDOMChanged() {
                 phrases: []
             },
             options: {
-                hideAllCo: false
+                hideAllCo: false,
+                hidePrivateMessages: false
             }
         },
         function (data) {

@@ -47,7 +47,8 @@ function setup() {
                 phrases: []
             },
             options: {
-                hideAllCo: false
+                hideAllCo: false,
+                hidePrivateMessages: false
             }
         },
         function(data) {
@@ -61,6 +62,7 @@ function setup() {
             $("#optionRead").prop("checked", data.posts.hideRead);
 
             $("#optionAllCo").prop("checked", data.options.hideAllCo);
+            $("#optionPrivateMessages").prop("checked", data.options.hidePrivateMessages);
         }
     );
 
@@ -82,7 +84,8 @@ function setup() {
                     phrases: processPhrases($("#optionBlockedPhrases").val().split(','))
                 },
                 options: {
-                    hideAllCo: $("#optionAllCo").prop("checked")
+                    hideAllCo: $("#optionAllCo").prop("checked"),
+                    hidePrivateMessages: $("#optionPrivateMessages").prop("checked"),
                 }
             };
 
