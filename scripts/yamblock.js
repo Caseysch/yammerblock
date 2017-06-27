@@ -65,6 +65,7 @@ function processOptions(options) {
     }
     if (options.hidePrivateMessages) {
         $(".yj-nav-menu--private-messages-group-list").hide();
+        $(".yj-nav-menu--private-messages-group-list2").hide();
     }
 }
 
