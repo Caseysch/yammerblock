@@ -64,8 +64,7 @@ function processOptions(options) {
         $(".all-company-list-item").hide();
     }
     if (options.hidePrivateMessages) {
-        $(".yj-nav-menu--private-messages-group-list").hide();
-        $(".yj-nav-menu--private-messages-group-list2").hide();
+        $(".yj-global-sidebar--private-messages-list").hide();
     }
 }
 
