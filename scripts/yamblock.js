@@ -5,10 +5,11 @@ function traceActivity(message) {
 function removeBlockedUsers(userData) {
     userData.blocked.forEach(function(userId) {
         userId = userId.trim();
-        $(".yj-message-list-item--avatar[data-userid=" + userId + "]").not("[style='display: none;']").each(function() {
+        $(".yj-hovercard-link[data-yammer-object='user:" + userId + "']").not(".yj-message-list-item--in-reply-to-user").not("[style='display: none;']").each(function () {
             traceActivity("Removing post from user: " + userId);
 
-            var index = $(this).parents().eq(2).hasClass("yj-thread-reply-list-item") ? 2 : 3;
+            // If it's a post, hide the 8th parent. If it's a reply, hide the 6th parent.
+            var index = $(this).parents().eq(7).hasClass("yj-thread-reply-list-item") ? 6 : 8;
             if (userData.blockedMethod === "0") {
                 $(this).parents().eq(index).hide();
             }
