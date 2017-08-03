@@ -51,7 +51,7 @@ function removeWorthlessPosts(postData) {
         $(this).parents().eq(5).hide();
     });
     $read.each(function () {
-        $(this).parents().eq(7).hide();
+        $(this).parents().eq(8).hide();
     });
     
     if ($joins.length + $groups.length + $praises.length + $read.length > 0) {
